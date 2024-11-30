@@ -9,13 +9,15 @@ import { UsersComponent } from './users/users.component';
 import { RidesComponent } from './rides/rides.component';
 import { EmergenciesComponent } from './emergencies/emergencies.component';
 import { FareControlsComponent } from './fare-controls/fare-controls.component';
+import { LayoutComponent } from './layout/layout.component';
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     RidesComponent,
     EmergenciesComponent,
-    FareControlsComponent
+    FareControlsComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

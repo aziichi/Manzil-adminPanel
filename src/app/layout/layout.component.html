@@ -1,0 +1,19 @@
+<!-- layout.component.html -->
+<div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-sm-3 sidebar">
+        <h4 class="ps-3 pb-1 fw-bold"><a href="#" class="active">Admin Panel</a></h4>
+        <a routerLink="/users">Users</a>
+        <a routerLink="/rides" routerLinkActive="active">Rides</a>
+        <a routerLink="/farecontrols" routerLinkActive="active">Fare Controls</a>
+        <a routerLink="/emergencies" routerLinkActive="active">Emergencies</a>
+      </div>
+      
+      <!-- Main Content Area -->
+      <div class="col-sm-9">
+        <router-outlet></router-outlet>  <!-- This is where routed components will be displayed -->
+      </div>
+    </div>
+  </div>
+  
