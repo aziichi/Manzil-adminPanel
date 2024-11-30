@@ -1,1 +1,71 @@
-<p>fare-controls works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 mt-2 ">
+            <a href="user.html">
+            <img src="logo.png" style="height: 50px;   float: left; "
+                alt>
+            </a>
+        </div>
+        <div class="col-6 mt-2">
+            <a href="#">
+            <img
+                src="https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cq_auto:eco%2Cw_1200/MTk4OTA1NjQyNjg0MDAwMDA3/how-to-be-a-gentleman-a-begginers-guide.png"
+                style="height: 40px; width: 40px; border-radius: 50%; float: right; "
+                alt>
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card custom-card p-4">
+                    <h1>Fare Controls</h1>
+
+                    <h3 class="mt-4 ">Set Fare Controls</h3>
+
+                    <form>
+                    <div class="mb-3 mt-2">
+                        <label class="form-label">Petrol Price</label>
+                        <input [(ngModel)]="petrolRate" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Enter Per Liter Petrol Price PKR">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Liters per KM</label>
+                        <input class="form-control" [(ngModel)]="litersPerMeter" [ngModelOptions]="{standalone: true}" placeholder="Enter Fuel Milage Liters per KM">
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" (click)="update()" class="btn btn-save mb-4">Save changes</button>
+                    </div>
+                </form>
+
+                </div>
+                
+            </div>
+    </div>
+    <div class="mt-4 card custom-card p-4">
+    <h3>Current Conrols</h3>
+    <div class="row">
+        <table class="table table-striped mb-3 ps-4">
+            <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Petrol Price per Liter</td>
+                    <td>{{fareControls.petrolRate}}</td>
+                </tr>
+                <tr>
+                    <td>Liters per KM</td>
+                    <td>{{fareControls.litersPerMeter*1000}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+
+</div>
