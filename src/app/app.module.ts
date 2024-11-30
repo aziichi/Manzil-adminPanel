@@ -7,11 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users/users.component';
 import { RidesComponent } from './rides/rides.component';
+import { EmergenciesComponent } from './emergencies/emergencies.component';
+import { FareControlsComponent } from './fare-controls/fare-controls.component';
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    RidesComponent
+    RidesComponent,
+    EmergenciesComponent,
+    FareControlsComponent
   ],
   imports: [
     BrowserModule,
