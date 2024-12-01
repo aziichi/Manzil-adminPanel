@@ -28,8 +28,8 @@ export class FareControlsComponent {
       }
     )
   }
-  litersPerMeter: number = this.fareControls.litersPerMeter ? this.fareControls.litersPerMeter : 0;
-  petrolRate: number = this.fareControls.petrolRate ? this.fareControls.petrolRate : 0;
+  litersPerMeter: number = this.fareControls.litersPerMeter;
+  petrolRate: number = this.fareControls.petrolRate;
 
   updateFareControls(): Promise<void> {
     return new Promise((resolve, reject) => {

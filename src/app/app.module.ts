@@ -10,6 +10,7 @@ import { RidesComponent } from './rides/rides.component';
 import { EmergenciesComponent } from './emergencies/emergencies.component';
 import { FareControlsComponent } from './fare-controls/fare-controls.component';
 import { LayoutComponent } from './layout/layout.component';
+import { FraudsComponent } from './frauds/frauds.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { LayoutComponent } from './layout/layout.component';
     RidesComponent,
     EmergenciesComponent,
     FareControlsComponent,
-    LayoutComponent
+    LayoutComponent,
+    FraudsComponent
   ],
   imports: [
     BrowserModule,

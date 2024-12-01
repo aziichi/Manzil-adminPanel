@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-9">
+    <div class="container col-sm-11">
       <div class="container py-5">
         <h1>Users</h1>
 
@@ -12,26 +12,35 @@
           />
         </div>
 
-        <table class="table">
+      <div class="table-container">
+        <table class="table table-hover">
           <thead>
             <tr>
-              <th>FullName</th>
+              <th>Full Name</th>
               <th>Email</th>
               <th>Phone Number</th>
               <th>OverAll Rating</th>
               <th>Total Ratings</th>
+              <th>Fraud Count</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let user of Users">
-              <td>{{ user.firstName }} {{ user.lastname }}</td>
+              <td>{{ user.firstName }} {{ user.lastName }}</td>
               <td class="email"> <a style="text-decoration: none; color:inherit" href="mailto:{{ user.email }}">{{ user.email }}</a> </td>
               <td>{{ user.phoneNumber }}</td>
               <td>{{ user.overallRating }}</td>
               <td>{{ user.totalRatings }}</td>
+              <td>{{ user.fraudCount }}</td>
+              <td>
+                <button class="btn unban-button" *ngIf="user.isBanned" (click)="unBanUser(user.id)" [disabled]="loadingStates[user.id]" >Permit</button>
+                <button class="btn filter-btn" *ngIf="!user.isBanned" (click)="banUser(user.id)" [disabled]="loadingStates[user.id]">Ban</button>
+              </td>
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   </div>

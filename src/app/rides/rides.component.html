@@ -1,46 +1,16 @@
-<nav class="navbar navbar-light">
-    <div class="container">
-        <a class="navbar-brand" href="user.html">Ride Express</a>
-        <div class="d-flex">
-            <a href="#" style="color: black; text-decoration: none; margin-top: 12px; font-weight: 600; margin-right: 25px;">Ride</a>
-            <a href="#" style="color: black; text-decoration: none; margin-top: 12px;font-weight: 600; margin-left: 10px; margin-right: 25px;">Drive</a>
-            <button href="#" class="btn filter-btn d-flex align-items-center">
-                Help</button>
-                <img src="Driver.jpg" class="profile-pic" alt="Profile">
-            
-        </div>
-    </div>
-</nav>
-
-<div class="container">
+<div class="container col-sm-11">
     <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
-        <h1>Users</h1>
-        <a class="btn filter-btn anc-btn" routerLink="/users" routerLinkActive="active">Users</a>
+        <h2>Search Ride</h2>
     </div>
 
     <div class="search-bar p-2 mb-3">
-        <input type="text" class="form-control" placeholder="Search by name, email, or phone number">
-    </div>
-    <div class="d-flex flex-wrap gap-3 mb-4">
-        <button class="btn filter-btn">All</button>
-        <button class="btn filter-btn">Pending</button>
-        <button class="btn filter-btn">Accepted</button>
-        <button class="btn filter-btn">Completed</button>
-        <button class="btn filter-btn">Cancelled</button>
-        <button class="btn filter-btn">No show</button>
-        <button class="btn filter-btn">Scheduled</button>
-        <button class="btn filter-btn">Carpool</button>
-        <button class="btn filter-btn">Express pool</button>
-        <button class="btn filter-btn">Pool</button>
-        <button class="btn filter-btn">UberX</button>
-        <button class="btn filter-btn">Comfort</button>
+        <input type="text" class="form-control" placeholder="Search by Driver Name">
     </div>
 
     <div class="table-container">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Ride</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Pickup</th>
@@ -52,7 +22,6 @@
             </thead>
             <tbody>
                 <tr *ngFor="let ride of rides">
-                    <td>{{ ride.ride }}</td>
                     <td>{{ ride.date }}</td>
                     <td>{{ ride.time }}</td>
                     <td>{{ ride.pickup }}</td>

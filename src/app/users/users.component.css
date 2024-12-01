@@ -1,74 +1,84 @@
 body {
-    background-color: #f0f8f4; 
-    font-family: 'Arial', sans-serif;
-  }
+    background-color: #f7faf7;
+}
 
-  .sidebar {
-    background-color: #f0f8f4;
-    height: 100vh;
-    padding-top: 50px;
-  }
+.navbar {
+    background-color: #f7faf7;
+}
 
-  .sidebar a {
+.navbar-brand {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.container {
+    padding-top: 20px;
+}
+
+.search-bar {
+    background-color: #e5f5e9;
+    border-radius: 10px;
+}
+
+.search-bar input {
+    background-color: #e5f5e9;
+    border: none;
+    box-shadow: none;
+}
+
+.filter-btn {
+    background-color: #e5f5e9;
+    color: #000;
+    font-weight: 600;
+    width: 80px;
+}
+
+table thead {
+    background-color: #e5f5e9;
+    font-weight: 600;
+}
+
+table tbody tr {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.filter-btn:hover{
+    background-color: red;
+    color: white;
+
+}
+
+.unban-button{
+    background-color: #e5f5e9;
+    color: #000;
+    font-weight: 600;
+    width: 80px;
+}
+
+.unban-button:hover{
+    background-color: greenyellow;
+    color: white;
+}
+
+.anc-btn:hover {
+    background-color: black;
+    color: white;
     text-decoration: none;
-    color: #1a3e2e;
-    padding: 10px 20px;
-    display: block;
-    font-weight: 600;
-    border-radius: 10px;
-    margin-bottom: 5px;
-  }
-
-  .sidebar a.active {
-    background-color: #e5f5e9;
-  }
-
-  h1 {
-    font-weight: 700;
-    color: #1a3e2e;
-    font-size: 1.8rem;
-  }
-
-  .search-box {
-    background-color: #e5f5e9;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    color: #1a3e2e;
-  }
-
-  
-  .table th, .table td {
-    padding: 15px;
-    vertical-align: middle;
-    color: #1a3e2e;
-  }
-
-  .table thead th {
-    border-bottom: 1px solid #d9ece3;
-  }
-
-  .table tbody tr {
-    border-bottom: 1px solid #c9e3d7;
-  }
-  .table  {
-    border: 1px solid #a0ada7;
-    border-radius: 50px;
-  }
-
-  .btn-view {
-    background-color: transparent;
-    color: #1a3e2e;
-    font-weight: 600;
-    border: none;
-  }
-
-  .badge-role {
-    background-color: #e5f5e9;
-    color: #1a3e2e;
-    padding: 6px 12px;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    font-weight: 600;
   }
