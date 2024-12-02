@@ -4,13 +4,14 @@
     </div>
 
     <div class="search-bar p-2 mb-3">
-        <input type="text" class="form-control" placeholder="Search by Driver Name">
+        <input type="text" class="form-control" placeholder="Search by Driver/Passenger Name" [(ngModel)]="searchName" (input)="searchRides()" />
     </div>
 
     <div class="table-container">
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th>Ride</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Pickup</th>
@@ -21,7 +22,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let ride of rides">
+                <tr *ngFor="let ride of rides; let i = index">
+                    <td>{{ i + 1 }}</td>
                     <td>{{ ride.date }}</td>
                     <td>{{ ride.time }}</td>
                     <td>{{ ride.pickup }}</td>

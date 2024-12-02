@@ -11,6 +11,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class EmergenciesComponent {
   emergencies: any = [];
+  showAlert: boolean = false;
+  alertMessage: string = '';
+
 
   constructor(private http: HttpClient) {
     this.getAllEmergencies();
@@ -26,6 +29,26 @@ export class EmergenciesComponent {
         console.log("Method: getAllEmergencies  |  Error while getting emergencies", error.message);
       }
     )
+  }
+
+  showRideDetails(rideData: any) {
+    this.alertMessage = `
+    <strong>Date:</strong> ${rideData.date}<br>
+    <strong>Time:</strong> ${rideData.time}<br>
+    <strong>Pickup:</strong> ${rideData.pickup}<br>
+    <strong>Dropoff:</strong> ${rideData.dropoff}<br>
+    <strong>Driver:</strong> ${rideData.driverName}<br>
+    <strong>Passenger:</strong> ${rideData.passengerName}<br>
+    <strong>Status:</strong> ${rideData.status}
+    `;
+
+    // Show the custom alert
+    this.showAlert = true;
+  }
+
+  closeAlert() {
+    // Close the custom alert when clicking on the close button
+    this.showAlert = false;
   }
 
 }

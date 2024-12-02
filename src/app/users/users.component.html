@@ -8,7 +8,9 @@
           <input
             type="text"
             class="form-control search-box"
-            placeholder="Search users"
+            placeholder="Search users by Name"
+            [(ngModel)]="searchQuery"
+            (input)="searchUsers()"
           />
         </div>
 

@@ -12,6 +12,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class UsersComponent {
   Users: any = [];
+  searchQuery: string = '';
 
   constructor(private http: HttpClient) {
     this.getAllUsers();
@@ -64,5 +65,21 @@ export class UsersComponent {
       }
     );
   };
+
+  searchUsers() {
+    if (this.searchQuery.trim() === '') {
+      this.getAllUsers();
+    } else {
+      this.http.get(`http://localhost:3000/getUserByName/${this.searchQuery}`).subscribe(
+        (result) => {
+          this.Users = result; // Set the filtered users in the `Users` array
+          console.log("Method: searchUsers  |  Filtered users fetched:", this.Users.length);
+        },
+        (error) => {
+          console.log("Method: searchUsers  |  Error while searching users:", error.message);
+        }
+      );
+    }
+  }
 
 }

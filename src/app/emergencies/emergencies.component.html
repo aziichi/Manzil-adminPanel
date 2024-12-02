@@ -6,6 +6,13 @@
     <div class="search-bar p-2 mb-3">
         <input type="text" class="form-control" placeholder="Search by Passenger Name">
     </div>
+    <div class="custom-alert" *ngIf="showAlert" (click)="closeAlert()">
+        <div class="alert-content">
+          <h3 class="txt-center">Ride Details</h3>
+          <div [innerHTML]="alertMessage"></div>
+          <button (click)="closeAlert()">Close</button>
+        </div>
+      </div>
 
     <div class="table-container">
         <table class="table table-hover">
@@ -22,8 +29,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let emergency of emergencies">
-                    <td>{{ emergency.pushedBy }}</td>
+                <tr *ngFor="let emergency of emergencies let i = index" (click)="showRideDetails(emergency.rideData)">
+                    <td>{{ i + 1 }}</td>
                     <td>{{ emergency.date }}</td>
                     <td>{{ emergency.time }}</td>
                     <td>{{ emergency.rideData.pickup }}</td>
