@@ -3,7 +3,7 @@
     class="notification"
     *ngFor="let emergency of newEmergency; let i = index"
   >
-    <span>{{ emergency.username }} has raised an emergency</span>
+    <span><b>{{ emergency.username }}</b> has raised an emergency</span>
     <span class="notification-action" (click)="removeNotification(i)">X</span>
   </div>
 </div>
