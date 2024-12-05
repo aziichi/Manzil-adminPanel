@@ -1,6 +1,19 @@
 <div class="container col-sm-11">
+
+    <div class="notification-container">
+        <div
+          class="notification"
+          *ngFor="let emergency of newEmergency; let i = index"
+        >
+          <span>{{ emergency.rideData.passengerName }} has raised an emergency</span>
+          <span class="notification-action" (click)="removeNotification(i)">X</span>
+        </div>
+      </div>
+
     <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
         <h2>Search Emergencies</h2>
+        <button class="btn btn-primary" *ngIf="!isSocketConnected" (click)="ioConnect()">Get Emergency Alerts</button>
+        <button class="btn filter-btn" *ngIf="isSocketConnected" (click)="ioDisconnect()">Stop Emergency ALerts</button>
     </div>
 
     <div class="search-bar p-2 mb-3">

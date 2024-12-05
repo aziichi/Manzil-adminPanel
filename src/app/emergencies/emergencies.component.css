@@ -139,3 +139,28 @@ table tbody tr {
     }
   }
   
+  .notification-container {
+    width: 500px;
+    /* height: 300px; */
+    /* background-color: red; */
+    position: absolute;
+    /* left: -100%; */
+    right: 20px;
+  }
+  
+  .notification {
+    background-color: #e5f5e9;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .notification-action {
+    background-color: #c6f1d0;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
+import { io, Socket } from 'socket.io-client';
+
 
 @Component({
   selector: 'app-emergencies',
@@ -14,10 +16,15 @@ export class EmergenciesComponent {
   showAlert: boolean = false;
   alertMessage: string = '';
 
+  newEmergency: any = [];
+
+  isSocketConnected: boolean = false; 
+
 
   constructor(private http: HttpClient) {
     this.getAllEmergencies();
   }
+  private socket: Socket | undefined;
 
   getAllEmergencies() {
     this.http.get('http://localhost:3000/getEmergencies').subscribe(
@@ -47,8 +54,29 @@ export class EmergenciesComponent {
   }
 
   closeAlert() {
-    // Close the custom alert when clicking on the close button
     this.showAlert = false;
+  }
+
+  ioConnect(){
+    this.isSocketConnected = true;
+    this.socket = io('http://localhost:3001');
+    this.socket.on('connect', () => {
+      console.log('connected');
+    });
+
+    this.socket.on('newEmergency', (data: any) => {
+      console.log(data);
+      this.newEmergency.push(data);
+    });
+  }
+  
+  removeNotification(index: number) {
+  this.newEmergency.splice(index, 1);
+}
+
+  ioDisconnect(){
+    this.socket?.disconnect();
+    this.isSocketConnected = false;
   }
 
 }
