@@ -18,7 +18,7 @@ export class FareControlsComponent {
   }
 
   getFareControls() {
-    this.http.get('http://localhost:3000/getFareControls').subscribe(
+    this.http.get('https://shrimp-select-vertically.ngrok-free.app/getFareControls').subscribe(
       (result) => {
         this.fareControls = result;
         console.log("Method: getFareControls  | fare controls fetched: ", this.fareControls);
@@ -33,7 +33,7 @@ export class FareControlsComponent {
 
   updateFareControls(): Promise<void> {
     return new Promise((resolve, reject) => {
-        this.http.put('http://localhost:3000/updateFareControls', {
+        this.http.put('https://shrimp-select-vertically.ngrok-free.app/updateFareControls', {
             litersPerMeter: this.litersPerMeter,
             petrolRate: this.petrolRate
         }).subscribe(

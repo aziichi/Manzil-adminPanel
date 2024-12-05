@@ -1,23 +1,11 @@
 <div class="container col-sm-11">
 
-    <div class="notification-container">
-        <div
-          class="notification"
-          *ngFor="let emergency of newEmergency; let i = index"
-        >
-          <span>{{ emergency.rideData.passengerName }} has raised an emergency</span>
-          <span class="notification-action" (click)="removeNotification(i)">X</span>
-        </div>
-      </div>
-
     <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
-        <h2>Search Emergencies</h2>
-        <button class="btn btn-primary" *ngIf="!isSocketConnected" (click)="ioConnect()">Get Emergency Alerts</button>
-        <button class="btn filter-btn" *ngIf="isSocketConnected" (click)="ioDisconnect()">Stop Emergency ALerts</button>
+        <h2>Emergencies</h2>
     </div>
 
-    <div class="search-bar p-2 mb-3">
-        <input type="text" class="form-control" placeholder="Search by Passenger Name">
+    <div class="p-2 mb-3">
+        <input type="text" class="form-control search-box" placeholder="Search by Driver or Passenger Name" [(ngModel)]="searchQuery" (input)="searchEmergencies()">
     </div>
     <div class="custom-alert" *ngIf="showAlert" (click)="closeAlert()">
         <div class="alert-content">
@@ -34,22 +22,20 @@
                     <th>Ride</th>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Pushed By</th>
                     <th>Pickup</th>
                     <th>Dropoff</th>
-                    <th>Passenger</th>
-                    <th>Driver</th>
                     <th>Reason</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let emergency of emergencies let i = index" (click)="showRideDetails(emergency.rideData)">
+                <tr *ngFor="let emergency of emergencies let i = index" (click)="showRideDetails(emergency)">
                     <td>{{ i + 1 }}</td>
                     <td>{{ emergency.date }}</td>
                     <td>{{ emergency.time }}</td>
+                    <td>{{ emergency.username }}</td>
                     <td>{{ emergency.rideData.pickup }}</td>
                     <td>{{ emergency.rideData.dropoff }}</td>
-                    <td>{{ emergency.rideData.passengerName }}</td>
-                    <td>{{ emergency.rideData.driverName }}</td>
                     <td>{{ emergency.reason }}</td>
             </tbody>
         </table>

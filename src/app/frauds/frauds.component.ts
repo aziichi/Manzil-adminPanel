@@ -11,19 +11,36 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class FraudsComponent {
   Frauds: any = [];
+  searchQuery: string = '';
 
   constructor(private http: HttpClient) {
     this.getAllFrauds();
   }
 
   getAllFrauds() {
-    this.http.get('http://localhost:3000/getFrauds').subscribe(
+    this.http.get('https://shrimp-select-vertically.ngrok-free.app/getFrauds').subscribe(
       (result) => {
         this.Frauds = result;
         console.log("Method: getAllFrauds  |  No. of frauds fetched: ", this.Frauds.length);
       },
       (error) => {
         console.log("Method: getAllFrauds  |  Error while getting frauds", error.message);
+      }
+    )
+  }
+
+  searchFrauds() {
+    if(this.searchQuery.trim() === '') {
+      this.getAllFrauds();
+      return;
+    }
+    this.http.get(`https://shrimp-select-vertically.ngrok-free.app/getFraudsByName/${this.searchQuery}`).subscribe(
+      (result) => {
+        this.Frauds = result;
+        console.log("Method: searchFrauds  |  No. of frauds fetched: ", this.Frauds.length);
+      },
+      (error) => {
+        console.log("Method: searchFrauds  |  Error while searching frauds", error.message);
       }
     )
   }

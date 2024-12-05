@@ -31,34 +31,22 @@ body {
     font-weight: 600;
   }
 
-  .btn-light-custom {
-    background-color: #e5f5e9;
-    color: #1a3e2e;
-    border: none;
-    font-weight: 600;
-    border-radius: 10px;
-    padding: 6px 15px;
-  }
-
-  .btn-light-custom:hover {
-    background-color: #d9ece3;
-  }
 
   
   .btn-save {
-    background-color: #1a3e2e;
+    background-color: #343B71;
     color: white;
     font-weight: 600;
     border-radius: 10px;
     padding: 10px 25px;
   }
   .btn-save:hover{
-    background-color: white;
+    background-color: #FFAA2A;
     color: black;
   }
 
   .custom-card {
-    background-color: #c6f1d0;
+    background-color: #FFAA2A;
     border: none;
   }
   

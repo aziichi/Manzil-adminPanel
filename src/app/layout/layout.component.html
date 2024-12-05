@@ -1,9 +1,19 @@
+<div class="notification-container">
+  <div
+    class="notification"
+    *ngFor="let emergency of newEmergency; let i = index"
+  >
+    <span>{{ emergency.username }} has raised an emergency</span>
+    <span class="notification-action" (click)="removeNotification(i)">X</span>
+  </div>
+</div>
+
 <div class="container-fluid">
   <div class="row">
     <!-- Sidebar -->
     <div class="col-sm-3 sidebar">
       <h4 class="pb-1 fw-bold">
-        <a routerLink="/users" class="active">Manzil Admin Panel</a>
+        <a routerLink="/users" class="active lay-head"><img src="assets/logo.png" alt="Logo" class="logo-icon" /> Admin Panel</a>
       </h4>
       <a routerLink="/users" routerLinkActive="active">Users</a>
       <a routerLink="/rides" routerLinkActive="active">Rides</a>

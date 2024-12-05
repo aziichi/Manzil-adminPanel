@@ -1,13 +1,15 @@
 <div class="container col-sm-11">
   <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
-    <h2>Search Fraud</h2>
+    <h2>Fraud History</h2>
   </div>
 
-  <div class="search-bar p-2 mb-3">
+  <div class="p-2 mb-3">
     <input
       type="text"
-      class="form-control"
-      placeholder="Search by Fraudster Name"
+      class="form-control search-box"
+      placeholder="Search by Name"
+      [(ngModel)]="searchQuery"
+      (input)="searchFrauds()"
     />
   </div>
 
@@ -31,6 +33,7 @@
           <td>{{ fraud.fraudster }}</td>
           <td>{{ fraud.driver }}</td>
           <td>{{ fraud.reason }}</td>
+        </tr>
       </tbody>
     </table>
   </div>

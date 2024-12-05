@@ -15,19 +15,15 @@ export class EmergenciesComponent {
   emergencies: any = [];
   showAlert: boolean = false;
   alertMessage: string = '';
-
-  newEmergency: any = [];
-
-  isSocketConnected: boolean = false; 
-
+  searchQuery: string = '';
 
   constructor(private http: HttpClient) {
     this.getAllEmergencies();
   }
-  private socket: Socket | undefined;
+  // private socket: Socket | undefined;
 
   getAllEmergencies() {
-    this.http.get('http://localhost:3000/getEmergencies').subscribe(
+    this.http.get('https://shrimp-select-vertically.ngrok-free.app/getEmergencies').subscribe(
       (result) => {
         this.emergencies = result;
         console.log("Method: getAllEmergencies  |  No. of emergencies fetched: ", this.emergencies.length);
@@ -38,45 +34,39 @@ export class EmergenciesComponent {
     )
   }
 
-  showRideDetails(rideData: any) {
+  searchEmergencies() {
+    if( this.searchQuery.trim() === '' ) {
+      this.getAllEmergencies();
+      return;
+    }
+    this.http.get(`https://shrimp-select-vertically.ngrok-free.app/getEmergenciesByName/${this.searchQuery}`).subscribe(
+      (result) => {
+        this.emergencies = result;
+        console.log("Method: searchEmergencies  |  No. of emergencies fetched: ", this.emergencies.length);
+      },
+      (error) => {
+        console.log("Method: searchEmergencies  |  Error while searching emergencies", error.message);
+      }
+    );
+  }
+
+  showRideDetails(emergency: any) {
     this.alertMessage = `
-    <strong>Date:</strong> ${rideData.date}<br>
-    <strong>Time:</strong> ${rideData.time}<br>
-    <strong>Pickup:</strong> ${rideData.pickup}<br>
-    <strong>Dropoff:</strong> ${rideData.dropoff}<br>
-    <strong>Driver:</strong> ${rideData.driverName}<br>
-    <strong>Passenger:</strong> ${rideData.passengerName}<br>
-    <strong>Status:</strong> ${rideData.status}
+    <strong>Pushed By:</strong> ${emergency.username}<br>
+    <strong>Date:</strong> ${emergency.rideData.date}<br>
+    <strong>Time:</strong> ${emergency.rideData.time}<br>
+    <strong>Pickup:</strong> ${emergency.rideData.pickup}<br>
+    <strong>Dropoff:</strong> ${emergency.rideData.dropoff}<br>
+    <strong>Driver:</strong> ${emergency.rideData.driverName}<br>
+    <strong>Passenger:</strong> ${emergency.rideData.passengerName}<br>
+    <strong>Status:</strong> ${emergency.rideData.status}
     `;
 
-    // Show the custom alert
     this.showAlert = true;
   }
 
   closeAlert() {
     this.showAlert = false;
-  }
-
-  ioConnect(){
-    this.isSocketConnected = true;
-    this.socket = io('http://localhost:3001');
-    this.socket.on('connect', () => {
-      console.log('connected');
-    });
-
-    this.socket.on('newEmergency', (data: any) => {
-      console.log(data);
-      this.newEmergency.push(data);
-    });
-  }
-  
-  removeNotification(index: number) {
-  this.newEmergency.splice(index, 1);
-}
-
-  ioDisconnect(){
-    this.socket?.disconnect();
-    this.isSocketConnected = false;
   }
 
 }

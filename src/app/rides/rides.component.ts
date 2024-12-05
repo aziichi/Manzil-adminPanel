@@ -22,7 +22,7 @@ export class RidesComponent {
   }
 
   getAllRides() {
-    this.http.get('http://localhost:3000/getRides').subscribe(
+    this.http.get('https://shrimp-select-vertically.ngrok-free.app/getRides').subscribe(
       (result) => {
         this.rides = result;
         console.log("Method: getAllRides  |  No. of rides fetched: ", this.rides.length);
@@ -35,7 +35,7 @@ export class RidesComponent {
 
   searchRides() {
     if (this.searchName.trim()) {
-      this.http.get(`http://localhost:3000/getRidebyDriver/${this.searchName}`).subscribe(
+      this.http.get(`https://shrimp-select-vertically.ngrok-free.app/getRidebyDriver/${this.searchName}`).subscribe(
         (result) => {
           console.log(this.searchName);
           this.rides = result;
