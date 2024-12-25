@@ -1,2 +1,3 @@
-<app-layout></app-layout>
-<router-outlet />
+<app-login *ngIf="isLoginRoute()"></app-login>
+<app-layout *ngIf="!isLoginRoute()"></app-layout>
+<router-outlet></router-outlet>

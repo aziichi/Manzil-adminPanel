@@ -17,8 +17,19 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
+    if (this.username === '' && this.password === '') {
+      this.errorMessage = 'Please enter both username and password.';
+      return;
+    } else if (!this.username){
+      this.errorMessage = 'Please enter username.';
+      return;
+    } else if (!this.password){
+      this.errorMessage = 'Please enter password.';
+      return
+    }
+
     if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['/dashboard']); // Redirect to protected route
+      this.router.navigate(['/users']);
     } else {
       this.errorMessage = 'Invalid credentials. Please try again.';
     }
