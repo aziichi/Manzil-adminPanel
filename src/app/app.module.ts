@@ -11,6 +11,7 @@ import { EmergenciesComponent } from './emergencies/emergencies.component';
 import { FareControlsComponent } from './fare-controls/fare-controls.component';
 import { LayoutComponent } from './layout/layout.component';
 import { FraudsComponent } from './frauds/frauds.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { FraudsComponent } from './frauds/frauds.component';
     EmergenciesComponent,
     FareControlsComponent,
     LayoutComponent,
-    FraudsComponent
+    FraudsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
