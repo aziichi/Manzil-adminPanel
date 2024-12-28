@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './rides.component.css'
 })
 export class RidesComponent {
+  apiUrl = environment.apiUrl;
   rides: any = [];
   searchName: string = '';
 
@@ -22,7 +24,7 @@ export class RidesComponent {
   }
 
   getAllRides() {
-    this.http.get('https://shrimp-select-vertically.ngrok-free.app/getRides').subscribe(
+    this.http.get(`${this.apiUrl}/getRides`).subscribe(
       (result) => {
         this.rides = result;
         console.log("Method: getAllRides  |  No. of rides fetched: ", this.rides.length);
@@ -35,7 +37,7 @@ export class RidesComponent {
 
   searchRides() {
     if (this.searchName.trim()) {
-      this.http.get(`https://shrimp-select-vertically.ngrok-free.app/getRidebyDriver/${this.searchName}`).subscribe(
+      this.http.get(`${this.apiUrl}/${this.searchName}`).subscribe(
         (result) => {
           console.log(this.searchName);
           this.rides = result;

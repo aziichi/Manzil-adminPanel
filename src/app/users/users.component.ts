@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrl: './users.component.css'
 })
 export class UsersComponent {
+  apiUrl = environment.apiUrl;
   Users: any = [];
   searchQuery: string = '';
 
@@ -19,7 +21,7 @@ export class UsersComponent {
   }
 
   getAllUsers() {
-    this.http.get('https://shrimp-select-vertically.ngrok-free.app/getUsers').subscribe(
+    this.http.get(`${this.apiUrl}/getUsers`).subscribe(
       (result) => {
         this.Users = result;
         console.log("Method: getAllUsers  |  No. of users fetched: ", this.Users.length);
@@ -34,7 +36,7 @@ export class UsersComponent {
 
   banUser(userId: string) {
     this.loadingStates[userId] = true;
-    this.http.put(`https://shrimp-select-vertically.ngrok-free.app/banUser/${userId}`, { isBanned: true }).subscribe(
+    this.http.put(`${this.apiUrl}/${userId}`, { isBanned: true }).subscribe(
       (result) => {
         console.log(`Method: banUser  |  User with ID ${userId} successfully banned:`, result);
         alert("User banned successfully");
@@ -51,7 +53,7 @@ export class UsersComponent {
 
   unBanUser(userId: string) {
     this.loadingStates[userId] = true;
-    this.http.put(`https://shrimp-select-vertically.ngrok-free.app/banUser/${userId}`, { isBanned: false }).subscribe(
+    this.http.put(`${this.apiUrl}/banUser/${userId}`, { isBanned: false }).subscribe(
       (result) => {
         console.log(`Method: unBanUser  |  User with ID ${userId} successfully unbanned:`, result);
         alert("User unbanned successfully");
@@ -70,7 +72,7 @@ export class UsersComponent {
     if (this.searchQuery.trim() === '') {
       this.getAllUsers();
     } else {
-      this.http.get(`https://shrimp-select-vertically.ngrok-free.app/getUserByName/${this.searchQuery}`).subscribe(
+      this.http.get(`${this.apiUrl}/getUserByName/${this.searchQuery}`).subscribe(
         (result) => {
           this.Users = result; // Set the filtered users in the `Users` array
           console.log("Method: searchUsers  |  Filtered users fetched:", this.Users.length);

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -12,13 +13,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class FareControlsComponent {
   fareControls: any = [];
+  apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
     this.getFareControls();
   }
 
   getFareControls() {
-    this.http.get('https://shrimp-select-vertically.ngrok-free.app/getFareControls').subscribe(
+    this.http.get(`${this.apiUrl}/getFareControls`).subscribe(
       (result) => {
         this.fareControls = result;
         console.log("Method: getFareControls  | fare controls fetched: ", this.fareControls);
@@ -33,7 +35,7 @@ export class FareControlsComponent {
 
   updateFareControls(): Promise<void> {
     return new Promise((resolve, reject) => {
-        this.http.put('https://shrimp-select-vertically.ngrok-free.app/updateFareControls', {
+        this.http.put(`${this.apiUrl}/updateFareControls`, {
             litersPerMeter: this.litersPerMeter,
             petrolRate: this.petrolRate
         }).subscribe(

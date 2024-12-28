@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { io, Socket } from 'socket.io-client';
 import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+
 @Component({
   selector: 'app-layout',
   standalone: false,
@@ -11,13 +14,15 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent implements OnInit {
+  apiUrl = environment.apiUrl;
+
   alertMessage: string = '';
 
   newEmergency: any = [];
 
   isSocketConnected: boolean = false; 
 
-  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object){
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object , private router: Router) {
 
   }
 
@@ -33,7 +38,7 @@ export class LayoutComponent implements OnInit {
 
   ioConnect(){
     this.isSocketConnected = true;
-    this.socket = io('https://shrimp-select-vertically.ngrok-free.app');
+    this.socket = io(`${this.apiUrl}`);
     this.socket.on('connect', () => {
       console.log('connected');
     });
@@ -51,6 +56,11 @@ export class LayoutComponent implements OnInit {
   ioDisconnect(){
     this.socket?.disconnect();
     this.isSocketConnected = false;
+  }
+
+  logout(){
+    this.router.navigate(['/login']);
+    window.alert('Logged out successfully');
   }
 
 }

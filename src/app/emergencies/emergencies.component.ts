@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { io, Socket } from 'socket.io-client';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { io, Socket } from 'socket.io-client';
   styleUrl: './emergencies.component.css'
 })
 export class EmergenciesComponent {
+  apiUrl = environment.apiUrl;
   emergencies: any = [];
   showAlert: boolean = false;
   alertMessage: string = '';
@@ -23,7 +25,7 @@ export class EmergenciesComponent {
   // private socket: Socket | undefined;
 
   getAllEmergencies() {
-    this.http.get('https://shrimp-select-vertically.ngrok-free.app/getEmergencies').subscribe(
+    this.http.get(`${this.apiUrl}/getEmergencies`).subscribe(
       (result) => {
         this.emergencies = result;
         console.log("Method: getAllEmergencies  |  No. of emergencies fetched: ", this.emergencies.length);
@@ -39,7 +41,7 @@ export class EmergenciesComponent {
       this.getAllEmergencies();
       return;
     }
-    this.http.get(`https://shrimp-select-vertically.ngrok-free.app/getEmergenciesByName/${this.searchQuery}`).subscribe(
+    this.http.get(`${this.apiUrl}/getEmergenciesByName/${this.searchQuery}`).subscribe(
       (result) => {
         this.emergencies = result;
         console.log("Method: searchEmergencies  |  No. of emergencies fetched: ", this.emergencies.length);
