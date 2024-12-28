@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { environment } from '../../environments/environment';
 
@@ -21,7 +21,9 @@ export class FraudsComponent {
   }
 
   getAllFrauds() {
-    this.http.get(`${this.apiUrl}/getFrauds`).subscribe(
+    this.http.get(`${this.apiUrl}/getFrauds`, {headers: new HttpHeaders({
+      'ngrok-skip-browser-warning':  '69420'
+    })}).subscribe(
       (result) => {
         this.Frauds = result;
         console.log("Method: getAllFrauds  |  No. of frauds fetched: ", this.Frauds.length);

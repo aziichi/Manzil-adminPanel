@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
@@ -24,7 +24,9 @@ export class RidesComponent {
   }
 
   getAllRides() {
-    this.http.get(`${this.apiUrl}/getRides`).subscribe(
+    this.http.get(`${this.apiUrl}/getRides`, {headers: new HttpHeaders({
+          'ngrok-skip-browser-warning':  '69420'
+        })}).subscribe(
       (result) => {
         this.rides = result;
         console.log("Method: getAllRides  |  No. of rides fetched: ", this.rides.length);

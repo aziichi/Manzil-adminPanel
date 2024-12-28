@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { environment } from '../../environments/environment';
 
@@ -21,7 +21,9 @@ export class UsersComponent {
   }
 
   getAllUsers() {
-    this.http.get(`${this.apiUrl}/getUsers`).subscribe(
+    this.http.get(`${this.apiUrl}/getUsers`, {headers: new HttpHeaders({
+      'ngrok-skip-browser-warning':  '69420'
+    })}).subscribe(
       (result) => {
         this.Users = result;
         console.log("Method: getAllUsers  |  No. of users fetched: ", this.Users.length);

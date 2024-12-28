@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { io, Socket } from 'socket.io-client';
 import { environment } from '../../environments/environment';
@@ -25,7 +25,9 @@ export class EmergenciesComponent {
   // private socket: Socket | undefined;
 
   getAllEmergencies() {
-    this.http.get(`${this.apiUrl}/getEmergencies`).subscribe(
+    this.http.get(`${this.apiUrl}/getEmergencies`, {headers: new HttpHeaders({
+      'ngrok-skip-browser-warning':  '69420'
+    })}).subscribe(
       (result) => {
         this.emergencies = result;
         console.log("Method: getAllEmergencies  |  No. of emergencies fetched: ", this.emergencies.length);

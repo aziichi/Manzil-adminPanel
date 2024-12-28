@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { environment } from '../../environments/environment';
 
@@ -20,7 +20,9 @@ export class FareControlsComponent {
   }
 
   getFareControls() {
-    this.http.get(`${this.apiUrl}/getFareControls`).subscribe(
+    this.http.get(`${this.apiUrl}/getFareControls`, {headers: new HttpHeaders({
+          'ngrok-skip-browser-warning':  '69420'
+        })}).subscribe(
       (result) => {
         this.fareControls = result;
         console.log("Method: getFareControls  | fare controls fetched: ", this.fareControls);
